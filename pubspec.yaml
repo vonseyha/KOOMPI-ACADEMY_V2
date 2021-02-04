@@ -38,6 +38,7 @@ dependencies:
   tuple: ^1.0.3
   image_picker: ^0.6.7+7
   flutter_image_compress: ^0.7.0
+  gender_selector: ^1.0.6
   # page_transition: ^1.1.6
 
 
