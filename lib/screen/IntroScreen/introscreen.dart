@@ -1,10 +1,10 @@
 import 'dart:io';
+import 'package:KOOMPIACADEMY/screen/LoginScreen/loginscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'data.dart';
 import 'funtion-build.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroScreen extends StatefulWidget {
   @override
@@ -35,7 +35,6 @@ class _HomeState extends State<IntroScreen> {
   
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     mySLides = getSlides();
     controller = new PageController();
@@ -142,6 +141,10 @@ class _HomeState extends State<IntroScreen> {
                   //     );
                   //   }
                   // });
+                  Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginUI()),
+                      );
                 },
                 child: Container(
                   height: Platform.isIOS ? 70 : 60,

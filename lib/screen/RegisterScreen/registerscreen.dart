@@ -193,6 +193,7 @@ String CREATE_USER = """
                           ReuseMeterialButton(
                             evaluation: 0.0,
                             color: Color(0xFF4080D6),
+                            radius: 30,
                             child: MaterialButton(
                               minWidth: 200.0,
                               splashColor: null,

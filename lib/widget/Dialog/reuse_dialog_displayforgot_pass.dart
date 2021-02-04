@@ -1,94 +1,78 @@
+import 'package:KOOMPIACADEMY/screen/LoginScreen/loginscreen.dart';
+import 'package:KOOMPIACADEMY/widget/Form/reuse_materialButton.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
- Future<String> forgotpassword(String email) async {
-    var response = await http
-        .post("https://learnbackend.koompi.com/forgot-password", body: {
-      'email': email,
-    });
-    print(response.statusCode);
-    print(email.toString());
-  }
+Future<String> forgotpassword(String email) async {
+  var response =
+      await http.post("https://learnbackend.koompi.com/forgot-password", body: {
+    'email': email,
+  });
+  print(response.statusCode);
+  print(email.toString());
+}
 
-  //*************** Display Dailog Forgot Password Button************//
- displayDialogForgotPass(BuildContext context,String _resetemail) async {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(5.0)),
-            ),
-            content: Container(
-              height: 80.0,
-              width: 310.0,
-              child: Column(
-                children: <Widget>[
-                  Container(
-                      child: new Text(
-                    "FORGOT PASSWORD",
-                    style: new TextStyle(
-                      fontSize: 20.0,
-                      fontFamily: 'sans-serif',
-                      color: Colors.indigo,
-                    ),
-                  )),
-                  Container(
-                    margin: const EdgeInsets.only(top: 8.0),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Email",
-                        contentPadding: EdgeInsets.all(15.0),
-                        border: InputBorder.none,
-                        filled: true,
-                        fillColor: Colors.grey[200],
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (val) {
-                        if (val.length == 0)
-                          return "Please enter email";
-                        else if (!val.contains("@"))
-                          return "Please enter valid email";
-                        else
-                          return null;
-                      },
-                      onSaved: (val) => _resetemail = val,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            actions: <Widget>[
-              new FlatButton(
-                child: new Text(
-                  'Cancel',
-                  style: new TextStyle(
-                    fontSize: 13.0,
-                    color: Colors.white,
-                    fontFamily: 'sans-serif',
+TextStyle style =
+    TextStyle(fontFamily: 'Montserrat', fontSize: 17.0, color: Colors.white);
+//*************** Display Dailog Forgot Password Button************//
+displayDialogForgotPass(BuildContext context, String _resetemail) async {
+  return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          ),
+          content: Container(
+            height: MediaQuery.of(context).size.height / 3.2,
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              children: <Widget>[
+                Text("PASSWORD UPDATED",
+                    textAlign: TextAlign.center,
+                    style:
+                        TextStyle(fontSize: 22, fontWeight: FontWeight.w800)),
+                SizedBox(
+                  height: 15.0,
+                ),
+                Image.asset(
+                  "images/correctpass.png",
+                  fit: BoxFit.contain,
+                  height: 100.0,
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Text(
+                  "your password has been updated!",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                ),
+                SizedBox(
+                  height: 7.0,
+                ),
+                //******Call Widget Login Button ******//
+                ReuseMeterialButton(
+                  evaluation: 0.5,
+                  radius: 10,
+                  color: Colors.black,
+                  child: MaterialButton(
+                    minWidth: 150,
+                    height: 5,
+                    splashColor: null,
+                    onPressed: () {
+                      //---------------------------
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginUI()));                    
+                    },
+                    child: Text("LOGIN",
+                        textAlign: TextAlign.center,
+                        style: style.copyWith(
+                            color: Colors.white, fontWeight: FontWeight.w400)),
                   ),
                 ),
-                color: Colors.blue,
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              new FlatButton(
-                child: new Text(
-                  'Submit',
-                  style: new TextStyle(
-                    fontSize: 13.0,
-                    color: Colors.white,
-                    fontFamily: 'sans-serif',
-                  ),
-                ),
-                color: Colors.amber,
-                onPressed: (){
-                  forgotpassword(_resetemail);
-                  print(_resetemail);
-                },
-              )
-            ],
-          );
-        });
-  }
+              ],
+            ),
+          ),
+        );
+      });
+}

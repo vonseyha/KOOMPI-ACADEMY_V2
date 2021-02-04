@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:KOOMPIACADEMY/screen/IntroScreen/introscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     Timer(Duration(seconds: 3), () {
-      // Navigator.push(context, MaterialPageRoute(builder: (context) => ));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => IntroScreen()));
       print("Already!!!");
     });
   }

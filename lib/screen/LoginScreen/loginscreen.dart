@@ -1,4 +1,5 @@
 
+import 'package:KOOMPIACADEMY/screen/HomePage/homepage.dart';
 import 'package:KOOMPIACADEMY/screen/LoginScreen/reset_password.dart';
 import 'package:KOOMPIACADEMY/screen/RegisterScreen/registerscreen.dart';
 import 'package:KOOMPIACADEMY/widget/Form/reuse_materialButton.dart';
@@ -116,6 +117,8 @@ String resetemail;
           key: formKey,
           child: SingleChildScrollView(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                      SizedBox(
                       height: 170.0,
@@ -179,10 +182,22 @@ String resetemail;
                           onsaved: (val) => password = val,
                       ),
                       ),
-                      SizedBox(
-                      height: 5.0,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(child: remberMeCheckBox()),
+                        Expanded(child: GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => ResetPassword()));
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 25.0),
+                            child: Text("Forgot Password?",textAlign: TextAlign.end,style: TextStyle(fontSize: 15,fontWeight: FontWeight.w400)),
+                          ),
+                        ))
+                      ],
                     ),
-                    remberMeCheckBox(),
                     SizedBox(
                       height: 05.0,
                     ),
@@ -190,6 +205,7 @@ String resetemail;
                     ReuseMeterialButton(
                       evaluation: 0.5,
                       color: Color(0xFF4080D6),
+                      radius: .30,
                       child: MaterialButton(
                         minWidth: 200,
                         splashColor: null,
@@ -198,6 +214,7 @@ String resetemail;
                             formKey.currentState.save();
                             // login(_email, _password, context);
                           }
+                          Navigator.push(context, MaterialPageRoute(builder:  (context) => HomePage()));
                         },
                         child: Text("LOGIN",
                             textAlign: TextAlign.center,
